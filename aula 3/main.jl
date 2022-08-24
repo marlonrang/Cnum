@@ -1,28 +1,37 @@
-f(x) = x^3 - 9*x + 3
+f1(x) = sqrt(x) - cos(x)   #3.2.1
 
-error = 10^-3
+f2(x) = 5*sin(x^2) - MathConstants.e^(x/10)   #3.2.2
 
-function bisection(a,b)
-x = (a+b)/2
-while abs(f(x)) > error
-   if f(a)*f(x) > 0
-   a = x
+f3(x) = ((10^-12)*(e^((x*(1.60217663*10^-19))/((1.380649*10^-23)*(300)))-1))+x-30 #3.2.8
 
-else
+erro = 10^-5
 
-   b = x 
-end 
-
-x = (a+b)/2
-end
-    return x
+function bissecao(a,b,f)
+  x = (a+b/2)
+  while abs(f(x)) > erro
+    if f(a)*f(x) > 0
+      a = x
+    else
+      b = x
     end
+    x = (a+b)/2
+  end
+  return x
+end
 
-r = bisection(-4,-3)
+r = bissecao(0, 1, f1)
+println("3.2.1")
 println(r)
 
-r = bisection(0,1)
+
+r = bissecao(0, 1, f2)
+println("3.2.2")
+println(r)
+r = bissecao(1, 2, f2)
+println(r)
+r = bissecao(2, 2.002, f2)
 println(r)
 
-r = bisection(2,3)
+r = bissecao(0, 1, f3)
+
 println(r)
